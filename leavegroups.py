@@ -62,9 +62,9 @@ i = 0
 while i < len(privates):
     try:
         if api.groups.leave(group_id=privates[i]) == 1:
-            print(Fore.GREEN + names[i] + ' vk.com/club' + str(privates[i]) + ' - Successfully!')
+            print(Fore.GREEN + names[i] + ': vk.com/club' + str(privates[i]) + ' - Successfully!')
         else:
-            print(Fore.RED + names[i] + ' vk.com/club' + str(privates[i]) + ' - Error!')
+            print(Fore.RED + names[i] + ': vk.com/club' + str(privates[i]) + ' - Error!')
     except vk.exceptions.VkAPIError as error:
         i = i - 1
     i = i + 1
