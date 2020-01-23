@@ -7,7 +7,6 @@ print(Fore.LIGHTYELLOW_EX + 'Open this site:')
 print(Fore.BLUE + 'https://oauth.vk.com/authorize?client_id=7289997&scope=groups&response_type=token&v=5.103')
 print(Fore.LIGHTYELLOW_EX + 'Input your token: ', end='')
 token = input()
-#token = 'e433d3733242aede087d6b2947ca5fcf6d421be58300f4d22204aad142090813dea99ebee9045af3ab980'
 session = vk.Session(access_token=token)
 api = vk.API(session, v=5.103)
 try:
@@ -20,7 +19,7 @@ ids = req.get('items')
 if len(ids) == 0:
     print(Fore.LIGHTRED_EX + "There're no groups")
     exit(0)
-file = open('groups-' + datetime.datetime.today().strftime("%Y-%m-%d-%H-%M-%S") + '.txt', 'w', encoding='utf-8')
+file = open('groups-' + datetime.datetime.today().strftime("%d-%H-%M-%S") + '.txt', 'w', encoding='utf-8')
 groups = api.groups.getById(group_ids=ids)
 names = [x.get('name') for x in groups]
 print(Fore.LIGHTRED_EX + '\n' + str(len(names)) + ' GROUPS:')
@@ -28,7 +27,7 @@ for i in range(len(names)):
     print(Fore.LIGHTBLUE_EX + f"{names[i]}: vk.com/club{ids[i]}")
     file.write(f"{names[i]}: vk.com/club{ids[i]}\n")
 file.close()
-print(Fore.RED + "\nLEAVE THESE GROUPS???(Y/N)" + Fore.RESET + "\n->", end='')
+print(Fore.RED + "\nLEAVE THESE GROUPS???(Y/N)", end='')
 inp = input()
 if inp != 'y' and inp != 'Y':
     print(Fore.RED + '\nREJECTED')
@@ -52,7 +51,7 @@ if len(privates) > 0:
     print(Fore.LIGHTRED_EX + "\nThere're privates groups:")
     for id in privates:
         print(Fore.LIGHTBLUE_EX + f"{api.groups.getById(group_id=id)[0].get('name')}: vk.com/club{id}")
-    print(Fore.RED + "Leave their too(Y/N)?\n" + Fore.RESET + '->', end='')
+    print(Fore.RED + "Leave their too(Y/N)?", end='')
     inp = input()
     if inp != 'y' and inp != 'Y':
         exit(0)
