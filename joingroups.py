@@ -4,6 +4,7 @@ import re
 import colorama
 from colorama import Fore
 colorama.init()
+
 print(Fore.LIGHTYELLOW_EX + 'Open this site:')
 print(Fore.BLUE + 'https://oauth.vk.com/authorize?client_id=7289997&scope=groups&response_type=token&v=5.103')
 print(Fore.LIGHTYELLOW_EX + 'Input your token: ', end='')
@@ -18,9 +19,9 @@ except vk.exceptions.VkAPIError:
 
 print('Input file\'s name with groups: ', end='')
 filename = input()
-file = open(filename, 'r')
+file = open(filename, 'r', encoding='utf-8')
 groups = file.read().split('\n')
-ids = [re.findall(r'\d+', group)[-1] for group in groups]
+ids = [re.findall(r'\d+', group)[-1] for group in groups if group != [] and re.search(r'\d', group) != None]
 if len(ids) == 0:
     print(Fore.RED + 'file sucks')
     exit(0)
@@ -38,8 +39,7 @@ while i < len(ids):
         else:
             print(Fore.RED + req[0].get('name') + ': vk.com/club' + str(ids[i]) + ' - Error!')
     except vk.exceptions.VkAPIError as error:
-        print(error)
-        i = i - 1
+        print(Fore.RED + error)
     i = i + 1
 
 if len(privates) > 0:
@@ -55,11 +55,12 @@ else:
 
 i = 0
 while i < len(privates):
+    time.sleep(4)
     try:
         if api.groups.join(group_id=privates[i]) == 1:
             print(Fore.GREEN + api.groups.getById(group_id=privates[i])[0].get('name') + ': vk.com/club' + str(privates[i]) + ' - Successfully!')
         else:
             print(Fore.RED + api.groups.getById(group_id=privates[i])[0].get('name') + ': vk.com/club' + str(privates[i]) + ' - Error!')
     except vk.exceptions.VkAPIError as error:
-        i = i - 1
+        print(Fore.RED + error)
     i = i + 1
