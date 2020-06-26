@@ -1,6 +1,4 @@
-import colorama
-import time
-import vk
+import colorama, time, vk
 from colorama import Fore
 colorama.init()
 print(Fore.LIGHTYELLOW_EX + 'Open this site:')
