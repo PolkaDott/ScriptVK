@@ -36,7 +36,8 @@ while i < len(ids):
         else:
             print(Fore.RED + req[0].get('name') + ': vk.com/club' + str(ids[i]) + ' - Error!')
     except vk.exceptions.VkAPIError as error:
-        print(Fore.RED + error)
+        print(Fore.RED + req[0].get('name') + ': vk.com/club' + str(ids[i]) + ' - Failed!')
+        print(Fore.RED + str(error))
     i = i + 1
 
 if len(privates) > 0:
