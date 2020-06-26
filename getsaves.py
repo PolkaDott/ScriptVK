@@ -1,8 +1,4 @@
-import datetime
-import colorama
-import requests
-import vk
-import os
+import datetime, colorama, requests, vk, os
 from colorama import Fore
 colorama.init()
 print(Fore.LIGHTYELLOW_EX + 'Open this site:')
