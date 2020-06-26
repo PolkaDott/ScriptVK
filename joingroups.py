@@ -1,7 +1,4 @@
-import vk
-import time
-import re
-import colorama
+import vk, time, re, colorama
 from colorama import Fore
 colorama.init()
 
