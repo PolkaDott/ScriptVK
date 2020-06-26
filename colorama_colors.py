@@ -1,6 +1,6 @@
 import colorama
 from colorama import Fore, Style
-colorama.init()
+colorama.init() 
 print('Colorama colors:')
 print(Style.RESET_ALL + 'DEFAULT:  ' + Style.BRIGHT + 'BRIGHT ' + Style.DIM + 'DIM ' + Style.NORMAL + 'NORMAL')
 print(Style.RESET_ALL + 'BLACK:  ' + Fore.BLACK + Style.BRIGHT + 'BRIGHT ' + Style.DIM + 'DIM ' + Style.NORMAL + 'NORMAL')
